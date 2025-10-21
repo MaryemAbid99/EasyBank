@@ -1,85 +1,98 @@
-EasyBank – Full Stack Application
-Description
+#  EasyBank – Full Stack Application
 
-EasyBank est une application web complète composée d’un backend NestJS et d’un frontend Next.js.
-Elle permet la gestion des utilisateurs et des articles avec authentification JWT et rôles (Admin / User).
+**EasyBank** est une application web complète composée d’un **backend NestJS** et d’un **frontend Next.js**.  
+Elle permet la **gestion des utilisateurs et des articles** avec authentification **JWT** et gestion des **rôles (Admin / User)**.
 
-Admin : peut créer, modifier, supprimer et publier des articles.
+---
 
-User : peut consulter uniquement les articles publiés.
+## Rôles et autorisations
 
-Setup Instructions
+- **Admin** : peut créer, modifier, supprimer et publier des articles.  
+- **User** : peut consulter uniquement les articles publiés.
 
- 1.Backend Setup (NestJS)
-Installation des dépendances
+> ⚙️ **Gestion des rôles**
+>
+> - Lors de l’inscription, chaque utilisateur est créé avec le rôle **USER** par défaut.  
+> - Le rôle **ADMIN** n’est **pas attribuable via l’application** ; il doit être modifié **manuellement dans la base de données**  
+>   (par exemple en exécutant une requête SQL du type :  
+>   `UPDATE user SET role = 'ADMIN' WHERE email = 'example@email.com';`)  
+> - Ce choix respecte les exigences du test technique : **aucune interface backend ou frontend** ne permet de changer le rôle d’un utilisateur.
 
+---
+
+##  Setup Instructions
+
+### 1️ Backend Setup (NestJS)
+
+#### Installation des dépendances
+```bash
 cd backend
 npm install
-
-2.Configuration du fichier .env
-
+Configuration du fichier .env
 Créer un fichier .env dans le dossier backend/ contenant :
 
+ini
+Copy code
 DATABASE_URL=postgresql://user:password@localhost:5432/easybank
 JWT_SECRET=your_secret_key
 PORT=3000
-
-
 Remplace user et password par tes identifiants PostgreSQL.
 
-3.Mise en place de la base de données
-
+Mise en place de la base de données
 Si tu utilises Docker :
 
+bash
+Copy code
 docker-compose up -d
-
-
 Sinon, crée la base manuellement :
 
+sql
+Copy code
 CREATE DATABASE easybank;
-
-4.Lancer le serveur backend
+Lancer le serveur backend
+bash
+Copy code
 npm run start:dev
-
-
 Le backend tourne sur http://localhost:3000
 
-5.Frontend Setup (Next.js)
+2️ Frontend Setup (Next.js)
 Installation des dépendances
-cd frontend
+bash
+Copy code
+cd ../frontend
 npm install
-
-6.Configuration du fichier .env.local
-
+Configuration du fichier .env.local
 Créer un fichier .env.local dans le dossier frontend/ contenant :
 
+ini
+Copy code
 NEXT_PUBLIC_API_URL=http://localhost:3000
-
-7.Lancer le frontend
+Lancer le frontend
+bash
+Copy code
 npm run dev
-
-
 Le frontend tourne sur http://localhost:3001
 
-8.Structure du projet
+ Structure du projet
+bash
+Copy code
 EASYBANK/
 │
-├── backend/                # API NestJS
+├── backend/               # API NestJS
 │   ├── src/
 │   ├── .env
 │   ├── package.json
 │   └── README.md
 │
-├── frontend/               # Application Next.js
+├── frontend/              # Application Next.js
 │   ├── src/
 │   ├── .env.local
 │   ├── package.json
 │   └── README.md
 │
-├── docker-compose.yml      # Lancement de la base PostgreSQL
-└── README.md               # Documentation principale
-
-9.Technologies utilisées
+├── docker-compose.yml     # Lancement de la base PostgreSQL
+└── README.md              # Documentation principale
+ Technologies utilisées
 Côté	Technologies principales
 Frontend	Next.js, TypeScript, Axios
 Backend	NestJS, TypeORM, PostgreSQL
@@ -87,8 +100,7 @@ Authentification	JWT
 Déploiement	Docker
 UI	CSS simple et responsive
 
-10.Fonctionnalités principales
-
+ Fonctionnalités principales
 Authentification JWT (login / register)
 
 Gestion des rôles : Admin / User
@@ -101,7 +113,9 @@ Protection des routes selon le rôle
 
 Connexion frontend-backend via API REST
 
-11.Installation rapide (pour tester)
+ Installation rapide (pour tester)
+bash
+Copy code
 # Cloner le dépôt
 git clone https://github.com/MaryemAbid99/easybank.git
 cd easybank
@@ -116,9 +130,8 @@ cd ../frontend
 npm install
 npm run dev
 
-
-// Auteur
-
+ Auteur
 Maryem Abid
 Maryem1999abid@gmail.com
 GitHub – MaryemAbid99
+
