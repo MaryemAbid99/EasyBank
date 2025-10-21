@@ -1,4 +1,4 @@
-#  EasyBank – Full Stack Application
+# EasyBank – Full Stack Application
 
 **EasyBank** est une application web complète composée d’un **backend NestJS** et d’un **frontend Next.js**.  
 Elle permet la **gestion des utilisateurs et des articles** avec authentification **JWT** et gestion des **rôles (Admin / User)**.
@@ -10,29 +10,27 @@ Elle permet la **gestion des utilisateurs et des articles** avec authentificatio
 - **Admin** : peut créer, modifier, supprimer et publier des articles.  
 - **User** : peut consulter uniquement les articles publiés.
 
-> ⚙️ **Gestion des rôles**
->
-> - Lors de l’inscription, chaque utilisateur est créé avec le rôle **USER** par défaut.  
-> - Le rôle **ADMIN** n’est **pas attribuable via l’application** ; il doit être modifié **manuellement dans la base de données**  
->   (par exemple en exécutant une requête SQL du type :  
->   `UPDATE user SET role = 'ADMIN' WHERE email = 'example@email.com';`)  
-> - Ce choix respecte les exigences du test technique : **aucune interface backend ou frontend** ne permet de changer le rôle d’un utilisateur.
+### Gestion des rôles
 
----
+- Lors de l’inscription, chaque utilisateur est créé avec le rôle **USER** par défaut.  
+- Le rôle **ADMIN** n’est **pas attribuable via l’application** ; il doit être modifié **manuellement dans la base de données**, par exemple :
 
-##  Setup Instructions
+``` sql
+UPDATE user SET role = 'ADMIN' WHERE email = 'example@email.com';
 
-### 1️ Backend Setup (NestJS)
+Ce choix respecte les exigences du test technique : aucune interface backend ou frontend ne permet de changer le rôle d’un utilisateur.
 
-#### Installation des dépendances
-```bash
+Setup Instructions
+1. Backend Setup (NestJS)
+Installation des dépendances
+
 cd backend
 npm install
 Configuration du fichier .env
 Créer un fichier .env dans le dossier backend/ contenant :
 
-ini
-Copy code
+env
+
 DATABASE_URL=postgresql://user:password@localhost:5432/easybank
 JWT_SECRET=your_secret_key
 PORT=3000
@@ -41,41 +39,35 @@ Remplace user et password par tes identifiants PostgreSQL.
 Mise en place de la base de données
 Si tu utilises Docker :
 
-bash
-Copy code
+
 docker-compose up -d
 Sinon, crée la base manuellement :
 
 sql
-Copy code
+
 CREATE DATABASE easybank;
 Lancer le serveur backend
-bash
-Copy code
+
 npm run start:dev
 Le backend tourne sur http://localhost:3000
 
-2️ Frontend Setup (Next.js)
+2. Frontend Setup (Next.js)
 Installation des dépendances
-bash
-Copy code
+
 cd ../frontend
 npm install
 Configuration du fichier .env.local
 Créer un fichier .env.local dans le dossier frontend/ contenant :
 
-ini
-Copy code
+env
 NEXT_PUBLIC_API_URL=http://localhost:3000
 Lancer le frontend
-bash
-Copy code
+
 npm run dev
 Le frontend tourne sur http://localhost:3001
 
- Structure du projet
-bash
-Copy code
+Structure du projet
+
 EASYBANK/
 │
 ├── backend/               # API NestJS
@@ -92,7 +84,7 @@ EASYBANK/
 │
 ├── docker-compose.yml     # Lancement de la base PostgreSQL
 └── README.md              # Documentation principale
- Technologies utilisées
+Technologies utilisées
 Côté	Technologies principales
 Frontend	Next.js, TypeScript, Axios
 Backend	NestJS, TypeORM, PostgreSQL
@@ -100,7 +92,7 @@ Authentification	JWT
 Déploiement	Docker
 UI	CSS simple et responsive
 
- Fonctionnalités principales
+Fonctionnalités principales
 Authentification JWT (login / register)
 
 Gestion des rôles : Admin / User
@@ -113,9 +105,8 @@ Protection des routes selon le rôle
 
 Connexion frontend-backend via API REST
 
- Installation rapide (pour tester)
-bash
-Copy code
+Installation rapide (pour tester)
+
 # Cloner le dépôt
 git clone https://github.com/MaryemAbid99/easybank.git
 cd easybank
@@ -129,9 +120,9 @@ npm run start:dev
 cd ../frontend
 npm install
 npm run dev
-
- Auteur
+Auteur
 Maryem Abid
-Maryem1999abid@gmail.com
-GitHub – MaryemAbid99
+Email : Maryem1999abid@gmail.com
+GitHub : MaryemAbid99
+
 
